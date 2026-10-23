@@ -182,8 +182,9 @@ pnpm preview    # 预览构建产物
 2. `File` → `Add local repository…` → 选 `D:\记账工具` → 提示不是 git 仓库时点 **create a repository**。
 3. 左下角 Summary 填 `v1`，点 **Commit to main**。
 4. 右上角 **Publish repository**，取消勾选 “Keep this code private”，点 Publish。
-5. 打开 `https://github.com/<用户名>/<仓库名>` → `Settings` → `Pages` → Source 选 **GitHub Actions**（第一次通常会自动启用，见下方说明）。
-6. 点 `Actions` 标签，等 “Deploy to GitHub Pages” 变成绿色（约 1 分钟）。
+5. 打开 `https://github.com/<用户名>/<仓库名>` → `Settings` → `Pages` → **Source 选 `GitHub Actions` 并保存**。
+   > 这一步必须手动做一次：仓库自带的 `GITHUB_TOKEN` 没有管理员权限，Actions 无法自动创建 Pages 站点。
+6. 点 `Actions` 标签，等 “Deploy to GitHub Pages” 变成绿色（约 1 分钟）。如果之前已经失败过，点该次运行 → **Re-run all jobs**。
 7. 手机打开 `https://<用户名>.github.io/<仓库名>/`。
 
 ### 方式 B：命令行（装了 Git 之后）
@@ -214,8 +215,10 @@ git push -u origin main
 
 ### 常见问题
 
+- **Actions 报 `Resource not accessible by integration`（Create Pages site failed）**：GitHub 不允许 `GITHUB_TOKEN` 自动创建 Pages 站点。到 `Settings → Pages → Source` 选 **GitHub Actions** 保存，再回 Actions 点 **Re-run all jobs**。
 - **Actions 失败**：先确认 `Settings → Pages → Source` 是 GitHub Actions，然后在 Actions 里对该次运行点 **Re-run all jobs**。
 - **页面 404**：等 Actions 变绿；地址必须是 `https://<用户名>.github.io/<仓库名>/`，注意末尾斜杠。
+- **仓库名不建议用 `-` 之类的符号**：Pages 地址会变成 `https://<用户名>.github.io/-/`，能用但不好记；`Settings → General` 里可以改名，之后重跑一次即可。
 - **端口被占用**：关掉之前那个黑色命令行窗口，再双击 bat。
 - **手机打不开局域网地址**：确认同一 Wi-Fi、防火墙允许 Node.js、路由器没开“AP 隔离”。
 - **换地址数据不见了**：数据按网址隔离存在浏览器里。localhost 的账目不会自动出现在 Pages 上——先在旧地址“导出 JSON”，到新地址“导入 JSON”。这是 D14 纯本地的必然结果。
