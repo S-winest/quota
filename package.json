@@ -1,0 +1,20 @@
+{
+  "name": "daily-quota-ledger",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "每日可花额度的约束工具（PWA，纯本地）",
+  "packageManager": "pnpm@11.28.5",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "devDependencies": {
+    "vite": "^7.0.0",
+    "vite-plugin-pwa": "^1.0.0",
+    "vitest": "^3.2.0"
+  }
+}
