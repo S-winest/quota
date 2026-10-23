@@ -1,4 +1,5 @@
 @echo off
+chcp 936 >nul
 cd /d "%~dp0"
 title 上传更新到 GitHub
 
